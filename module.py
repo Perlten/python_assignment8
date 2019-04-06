@@ -4,13 +4,13 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-import kaggle
 
 if __name__ == "__main__":
   
     os.environ["KAGGLE_USERNAME"] = "perlten"
     os.environ["KAGGLE_KEY"] = "2184df94c35b67eaaef1ca9377e0b785"
 
+    import kaggle
     kaggle.api.authenticate()
     kaggle.api.dataset_download_files(
             'PromptCloudHQ/imdb-data', path='./', unzip=True)
