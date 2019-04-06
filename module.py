@@ -3,29 +3,13 @@ import sklearn.linear_model
 from sklearn.model_selection import train_test_split
 import numpy as np
 import matplotlib.pyplot as plt
-import zipfile
-import requests
-import os
-
-
-def download_data():
-    os.environ["KAGGLE_USERNAME"] = "perlten"
-    os.environ["KAGGLE_KEY"] = "2184df94c35b67eaaef1ca9377e0b785"
-    os.system("kaggle datasets download -d PromptCloudHQ/imdb-data")
-
-    zip_ref = zipfile.ZipFile("imdb-data.zip", 'r')
-    zip_ref.extractall()
-    zip_ref.close()
+import kaggle
 
 
 if __name__ == "__main__":
-    os.environ["KAGGLE_USERNAME"] = "perlten"
-    os.environ["KAGGLE_KEY"] = "29374bfab081c879e9b2ac2a896e748e"
-    os.system("kaggle datasets download -d PromptCloudHQ/imdb-data")
-
-    zip_ref = zipfile.ZipFile("imdb-data.zip", 'r')
-    zip_ref.extractall()
-    zip_ref.close()
+    kaggle.api.authenticate()
+    kaggle.api.dataset_download_files(
+        'PromptCloudHQ/imdb-data', path='./', unzip=True)
 
     data = pd.read_csv("IMDB-Movie-Data.csv")
 
